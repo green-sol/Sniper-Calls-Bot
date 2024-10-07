@@ -4,6 +4,8 @@ import json
 import webbrowser
 import threading
 from helper import Help
+import warnings
+warnings.filterwarnings("ignore")
 
 
 app = Flask(__name__)

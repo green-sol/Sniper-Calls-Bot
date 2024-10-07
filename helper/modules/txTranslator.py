@@ -8,7 +8,7 @@ from datetime import datetime
 import os
 import requests
 
-SEND_REPORT_EVERY = 300
+SEND_REPORT_EVERY = 150
 class TxTrnaslator:
     def __init__(self, time_interval):
         self.interval = time_interval
